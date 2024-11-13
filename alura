@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AluraFlix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>AluraFlix</h1>
+    </header>
+
+    <main>
+        <section id="video-catalogo">
+            <h2>Catálogo de Vídeos</h2>
+            <div id="videos"></div>
+        </section>
+
+        <section id="adicionar-video">
+            <h2>Adicionar Novo Vídeo</h2>
+            <input type="text" id="url" placeholder="URL do vídeo">
+            <button onclick="adicionarVideo()">Adicionar</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+CSS (style.css)
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    padding: 20px;
+    background-color: #1f1f1f;
+    text-align: center;
+}
+
+h1 {
+    color: #1db954;
+}
+
+main {
+    width: 80%;
+    margin-top: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+#video-catalogo h2, #adicionar-video h2 {
+    color: #1db954;
+}
+
+#videos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.video {
+    width: 200px;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#url {
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #1db954;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #14833b;
+}
+
+JavaScript (script.js)
+
+function adicionarVideo() {
+    const urlInput = document.getElementById("url");
+    const url = urlInput.value;
+
+    if (!url) {
+        alert("Por favor, insira uma URL válida");
+        return;
+    }
+
+    const videoContainer = document.createElement("div");
+    videoContainer.classList.add("video");
+
+    const iframe = document.createElement("iframe");
+    iframe.src = url;
+    iframe.width = "100%";
+    iframe.height = "150";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
